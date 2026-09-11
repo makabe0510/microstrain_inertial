@@ -1,0 +1,14 @@
+port: "/dev/ttyACM0"
+
+# CV7用
+filter_declination_source: 1
+
+# -ARなので磁気/GNSS headingを使わない
+filter_heading_source: 0
+
+# CV7-ARにはGNSS PPSがない
+filter_pps_source: 0
+
+# ARなので内部GNSS aidingも切っておく
+filter_enable_gnss_pos_vel_aiding: false
+filter_enable_gnss_heading_aiding: false
