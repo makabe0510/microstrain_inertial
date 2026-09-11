@@ -1,0 +1,27 @@
+diff --git a/include/microstrain_inertial_driver_common/utils/ros_compat.h b/include/microstrain_inertial_driver_common/utils/ros_compat.h
+index f1fe087..1f85b7e 100644
+--- a/include/microstrain_inertial_driver_common/utils/ros_compat.h
++++ b/include/microstrain_inertial_driver_common/utils/ros_compat.h
+@@ -409,6 +409,22 @@ void getParam(RosNodeType* node, const std::string& param_name, ConfigType& para
+   node->param<ConfigType>(param_name, param_val, default_val);
+ }
+ 
++template <>
++inline void getParam<uint8_t>(
++  RosNodeType* node,
++  const std::string& param_name,
++  uint8_t& param_val,
++  const uint8_t& default_val)
++{
++  int value;
++  node->param<int>(
++    param_name,
++    value,
++    static_cast<int>(default_val)
++  );
++  param_val = static_cast<uint8_t>(value);
++}
++
+ template <class ConfigType>
+ void setParam(RosNodeType* node, const std::string& param_name, const ConfigType& param_val)
+ {
